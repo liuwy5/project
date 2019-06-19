@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <link  rel="stylesheet"  type="text/css"  href="/assets/css/layout-default-latest.css" />
+    <script type="text/javascript" src="/assets/js/jquery-1.11.0.min.js"></script>
+    <script type="text/javascript" src="/assets/js/jquery.layout-latest.min.js"></script>
+    <title>index</title>
+</head>
+<body>
+
+<iframe name="content" class="ui-layout-center" src="/welcome" frameborder="0" scrolling="auto"></iframe>
+<div class="ui-layout-north">
+    欢迎<span th:text="${username}"></span>  &nbsp;&nbsp; <a href="/logout">退出</a>
+</div>
+<div class="ui-layout-south">
+    获取源码：<a href="https://github.com/zhangkaitao/shiro-example" target="_blank">https://github.com/zhangkaitao/shiro-example</a>
+</div>
+<div class="ui-layout-west">
+    功能菜单<br/>
+    <span th:each="menu, menuStat : ${menus}">
+        <p><a th:href="${menu.url}" target="content" th:text="${menu.name}"></a></p>
+    </span>
+</div>
+
+<script>
+    $(function () {
+        $(document).ready(function () {
+            $('body').layout({ applyDemoStyles: true });
+        });
+    });
+</script>
+</body>
+</html>

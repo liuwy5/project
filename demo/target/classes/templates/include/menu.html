@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8"/>
+</head>
+
+<body>
+
+<!--<nav th:fragment="authMenu" class="navbar-default navbar-side" role="navigation" style="float: left;">-->
+    <!--<div class="sidebar-collapse">-->
+        <!--<ul class="nav" id="main-menu">-->
+            <!--<li class="active">-->
+                <!--<a href="#"><i class="fa fa-home"></i> <span th:text="${menus.get(showpage).name}"></span></a>-->
+                <!--<ul class="nav nav-second-level collapse in">-->
+                    <!--<li th:if="${menus.get(showpage) != null and menus.get(showpage).children!=null and not menus.get(showpage).children.isEmpty() }">-->
+
+                        <!--<div th:replace="include/menu :: menuList(menuList=${menus.get(showpage).children}, activeIndex=${activeIndex})"></div>-->
+                    <!--</li>-->
+                <!--</ul>-->
+            <!--</li>-->
+        <!--</ul>-->
+    <!--</div>-->
+<!--</nav>-->
+
+<!--<li th:fragment="menuList" th:if="${menuList!=null and not menuList.isEmpty()}" th:each="menuItem : ${menuList}">-->
+    <!--<a th:href="@{${menuItem.url}}" href="#" th:class="${activeIndex == menuItem.num} ? 'active-menu' : '' " ><i class="fa fa-chevron-right"></i> <span th:text="${menuItem.name}"></span><span th:if="${countMap!=null and countMap.get(menuItem.num)!= null and countMap.get(menuItem.num)!= 0}" class="statistic-count" th:text="${countMap.get(menuItem.num)}"></span></a>-->
+    <!--<ul th:if="${menuItem.children !=null and not menuItem.children.isEmpty()}"-->
+        <!--class="nav nav-third-level collapse in">-->
+        <!--<li th:replace="include/menu :: menuList(menuList=${menuItem.children})"></li>-->
+    <!--</ul>-->
+<!--</li>-->
+
+
+</body>
+</html>

@@ -1,0 +1,13 @@
+if (pred != null) {
+            node.prev = pred;
+            if (compareAndSetTail(pred, node)) {
+                pred.next = node;
+                return node;
+            }
+        }
+
+        node.prev = t;
+                        if (compareAndSetTail(t, node)) {
+                            t.next = node;
+                            return t;
+                        }

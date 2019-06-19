@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <link  rel="stylesheet"  type="text/css"  href="/assets/css/css.css" />
+    <title>append child</title>
+</head>
+<body>
+    <form id="form" method="post">
+        <div class="form-group">
+            <label>父节点名称：</label>
+            <div th:text="${parent.name}"></div>
+        </div>
+
+        <div class="form-group">
+            <label>子节点名称：</label>
+            <input name="name"/>
+        </div>
+
+        <button value="新增子节点"></button>
+    </form>
+</body>
+</html>

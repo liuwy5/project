@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+      xmlns:shiro="http://www.pollix.at/thymeleaf/shiro">
+<head>
+    <meta charset="UTF-8">
+    <link  rel="stylesheet"  type="text/css"  href="/assets/css/css.css" />
+    <script type="text/javascript" src="/assets/js/jquery-1.11.0.min.js"></script>
+    <title>user list</title>
+</head>
+<body>
+
+<form id="form" method="post">
+    <div class="form-group">
+        <label>名称：</label>
+        <input name="name"/>
+    </div>
+    <shiro:hasPermission name="organization:update">
+        <button id="updateBtn">修改</button>
+    </shiro:hasPermission>
+
+    <shiro:hasPermission name="organization:delete">
+        <!--<c:if test="${not organization.rootNode}">-->
+            <button id="deleteBtn">删除</button>
+        <!--</c:if>-->
+    </shiro:hasPermission>
+
+    <shiro:hasPermission name="organization:create">
+        <button id="appendChildBtn">添加子节点</button>
+    </shiro:hasPermission>
+
+    <shiro:hasPermission name="organization:update">
+        <!--<c:if test="${not organization.rootNode}">-->
+            <button id="moveBtn">移动节点</button>
+        <!--</c:if>-->
+    </shiro:hasPermission>
+</form>
+
+<script th:inline="javascript">
+    $(function() {
+        var organizationId = [[${organization.id}]];
+        $("#updateBtn").click(function() {
+            $("#form")
+                .attr("action", "/organization/" + organizationId + "/update")
+                .submit();
+            return false;
+        });
+        $("#deleteBtn").click(function() {
+            if(confirm("确认删除吗？")) {
+                $("#form")
+                    .attr("action", "/organization/" + organizationId + "/delete")
+                    .submit();
+            }
+            return false;
+        });
+
+        $("#appendChildBtn").click(function() {
+            location.href = "/organization/" + organizationId + "/appendChild";
+            return false;
+        });
+
+        $("#moveBtn").click(function() {
+            location.href = "/organization/" + organizationId + "/move";
+            return false;
+        });
+    });
+</script>
+</body>
+</html>

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" href="/assets/css/css.css" />
+    <title>list</title>
+</head>
+<body>
+    <div th:if="${msg != null}">
+        <div class="message">${msg}</div>
+    </div>
+
+    <!--<shiro:hasPermission name="role:create">-->
+        <a href="/role/create">角色新增</a><br/>
+    <!--</shiro:hasPermission>-->
+
+    <table class="table">
+        <thead>
+        <tr>
+            <th>角色名称</th>
+            <th>角色描述</th>
+            <th>拥有的资源</th>
+            <th>操作</th>
+        </tr>
+        </thead>
+        <tbody>
+            <tr th:each="role, roleStat : ${roleList}"> <!--状态变量默认为“变量名+Stat"-->
+                <td th:text="${role.role}">name</td>
+                <td th:text="${role.description}">index</td>
+                <td th:text="${role.description}">index</td>
+                <!--<td th:text="${zhangfn:resourceNames(role.resourceIds)}">index</td>-->
+                <td>
+                    <!--<shiro:hasPermission name="role:update">-->
+                        <a th:href="@{'/role/' + ${role.id} + '/update'}">修改</a>
+                    <!--</shiro:hasPermission>-->
+                    <!--<shiro:hasPermission name="role:delete">-->
+                        <a th:href="@{'/role/' + ${role.id} + '/delete'}">删除</a>
+                    <!--</shiro:hasPermission>-->
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</body>
+</html>

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" href="/assets/css/css.css" />
+    <title>list</title>
+</head>
+<body>
+    <div th:if="${msg != null}">
+        <div class="message">${msg}</div>
+    </div>
+
+    <!--<shiro:hasPermission name="user:create">-->
+        <a href="/user/create">用户新增</a><br/>
+    <!--</shiro:hasPermission>-->
+
+    <table class="table">
+        <thead>
+        <tr>
+            <th>用户名</th>
+            <th>所属组织</th>
+            <th>角色列表</th>
+            <th>操作</th>
+        </tr>
+        </thead>
+        <tbody>
+            <tr th:each="user, userStat : ${userList}"> <!--状态变量默认为“变量名+Stat"-->
+                <td th:text="${user.username}">name</td>
+                <td th:text="${user.username}">name</td>
+                <td th:text="${user.username}">name</td>
+                <!--<td th:text="${zhangfn:organizationName(user.organizationId)}">index</td>-->
+                <!--<td th:text="${zhangfn:roleNames(user.roleIds)}">index</td>-->
+                <td>
+                    <!--<shiro:hasPermission name="user:update">-->
+                        <a th:href="@{'/user/' + ${user.id}+ '/update'}">修改</a>
+                    <!--</shiro:hasPermission>-->
+
+                    <!--<shiro:hasPermission name="user:delete">-->
+                        <a th:href="@{'/user/' + ${user.id}+ '/delete'}">删除</a>
+                    <!--</shiro:hasPermission>-->
+
+                    <!--<shiro:hasPermission name="user:update">-->
+                        <a th:href="@{'/user/' + ${user.id}+ '/changePassword'}">改密</a>
+                    <!--</shiro:hasPermission>-->
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</body>
+</html>

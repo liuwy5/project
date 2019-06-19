@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <link  rel="stylesheet" type="text/css" href="/assets/css/css.css" />
+    <link  rel="stylesheet" type="text/css" href="/assets/jquery-treetable/stylesheets/jquery.treetable.css" />
+    <link  rel="stylesheet" type="text/css" href="/assets/jquery-treetable/stylesheets/jquery.treetable.theme.default.css" />
+    <script type="text/javascript" src="/assets/js/jquery-1.11.0.min.js"></script>
+    <script type="text/javascript" src="/assets/jquery-treetable/javascripts/src/jquery.treetable.js"></script>
+    <style>
+        #table th, #table td {
+            font-size: 14px;
+            padding : 8px;
+        }
+    </style>
+    <title>list</title>
+</head>
+<body>
+    <div th:if="${msg != null}">
+        <div class="message" th:text="${msg}">${msg}</div>
+    </div>
+    <table id="table">
+        <thead>
+        <tr>
+            <th>名称</th>
+            <th>类型</th>
+            <th>URL路径</th>
+            <th>权限字符串</th>
+            <th>操作</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr data-tt-id='${resource.id}' th:each="resource, resourceStat : ${resourceList}">
+            <td th:text="${resource.name}">name</td>
+            <td th:text="${resource.type.info}">index</td>
+            <td th:text="${resource.url}">index</td>
+            <td th:text="${resource.permission}">index</td>
+            <td>
+                <!--<shiro:hasPermission name="resource:create">-->
+                <div th:if="${resource.type ne 'button'}">
+                    <a th:href="@{'/resource/' + ${resource.id} + '/appendChild'}">添加子节点</a>
+                </div>
+                <!--</shiro:hasPermission>-->
+
+                <!--<shiro:hasPermission name="resource:update">-->
+                    <a th:href="@{'/resource/' + ${resource.id} + '/update'}">修改</a>
+                <!--</shiro:hasPermission>-->
+
+                <div th:if="${resource.rootNode != null}">
+                    <!--<shiro:hasPermission name="resource:delete">-->
+                        <a class="deleteBtn" href="#" th:data-id="${resource.id}">删除</a>
+                    <!--</shiro:hasPermission>-->
+                </div>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+    <script>
+        $(function() {
+            $("#table").treetable({ expandable: true }).treetable("expandNode", 1);
+            $(".deleteBtn").click(function() {
+                if(confirm("确认删除吗?")) {
+                    location.href = "/resource/"+$(this).data("id")+"/delete";
+                }
+            });
+        });
+    </script>
+</body>
+</html>

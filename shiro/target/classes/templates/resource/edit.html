@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <link  rel="stylesheet" type="text/css" href="/assets/css/css.css" />
+    <title>tree</title>
+</head>
+<body>
+    <form method="post">
+        <!--<c:if test="${not empty parent}">-->
+        <div th:if="${parent != null}">
+            <div class="form-group">
+                <label>父节点名称：</label>
+                <span th:text="${parent.name}"></span>
+            </div>
+        </div>
+        <!--</c:if>-->
+
+        <div class="form-group">
+            <label>
+                <span th:if="${parent != null}">
+                    子
+                </span>
+                名称：</label>
+            <input path="name"/>
+        </div>
+        <div class="form-group">
+            <label>类型：</label>
+            <select name="type" items="${types}" itemLabel="info"/>
+        </div>
+
+        <div class="form-group">
+            <label >URL路径：</label>
+            <input name="url"/>
+        </div>
+
+
+        <div class="form-group">
+            <label>权限字符串：</label>
+            <input name="permission"/>
+        </div>
+
+        <button th:text="${op}">${op}</button>
+    </form>
+</body>
+</html>

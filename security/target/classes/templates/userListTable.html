@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <link href="/assets/css/jquery.dataTables.min.css" rel="stylesheet"/>
+    <script type="text/javascript" src="/assets/js/jquery-1.11.1.min.js"></script>
+    <script type="text/javascript" src="/assets/js/jquery.dataTables.min.js"></script>
+    <title>user list table</title>
+</head>
+<body>
+<button id="table_id_example_button">获取选中的行</button>
+<table id="table_id_example">
+    <thead>
+    <td>a</td>
+    <td>b</td>
+    </thead>
+    <!--<tbody>-->
+    <!--<tr>-->
+    <!--<td>2</td>-->
+    <!--<td>Row 1 Data 2</td>-->
+    <!--</tr>-->
+    <!--<tr>-->
+    <!--<td>1</td>-->
+    <!--<td>Row 2 Data 2</td>-->
+    <!--</tr>-->
+    <!--</tbody>-->
+</table>
+
+</body>
+<script type="text/javascript">
+    $(document).ready(function() {
+        var data = [
+            {
+                "id":       "Tiger Nixon",
+                "uuid":   "System Architect",
+                "salary":     "$3,120",
+                "start_date": "2011/04/25",
+                "office":     "Edinburgh",
+                "extn":       "5421"
+            },
+            {
+                "id":       "Garrett Winters",
+                "uuid":   "Director",
+                "salary":     "$5,300",
+                "start_date": "2011/07/25",
+                "office":     "Edinburgh",
+                "extn":       "8422"
+            }
+        ];
+        var table = $('#table_id_example').dataTable({
+            ajax: "/rest/api/user/listData",
+            language: {
+                search: '在表格中搜索：'
+            },
+            ordering: false,
+
+
+            ajax: function (data, callback, settings) {
+                //封装请求参数
+                var param = {};
+
+                //ajax请求数据方法
+                $.ajax({
+                    type: "POST",
+                    url: "/rest/api/user/list",//url请求的地址
+                    cache: false,  //禁用缓存
+                    data: param,  //传入组装的参数
+                    dataType: "json",
+                    success: function (result) {
+
+                        //封装返回数据重要
+                        var returnData = {};
+                        //这里直接自行返回了draw计数器,应该由后台返回
+                        // returnData.draw = data.draw;
+                        //返回数据全部记录
+                        //后台不实现过滤功能，每次查询均视作全部结果
+                        //返回的数据列表
+                        returnData.data = result;
+
+                        //调用DataTables提供的callback方法，代表数据已封装完成并传回DataTables进行渲染
+                        //此时的数据需确保正确无误，异常判断应在执行此回调前自行处理完毕
+                        callback(returnData);
+                    }
+                });
+            },
+            columns: [
+                { data: 'id' },
+                { data: 'uuid' }
+            ]
+
+        }).api();
+
+        //给行绑定选中事件
+        $('#table_id_example tbody').on('click', 'tr', function () {
+            if ($(this).hasClass('selected')) {
+                $(this).removeClass('selected');
+            }
+            else {
+                table.$('tr.selected').removeClass('selected');
+                $(this).addClass('selected');
+            }
+        })
+
+        //给按钮绑定点击事件
+        $("#table_id_example_button").click(function () {
+            var column1 = table.row('.selected').data().id;
+            var column2 = table.row('.selected').data().uuid;
+            alert("第一列内容："+column1 + "；第二列内容： " + column2);
+        });
+    } );
+</script>
+</body>
+</html>

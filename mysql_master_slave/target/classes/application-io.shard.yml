@@ -1,0 +1,51 @@
+# Tomcat
+server:
+  port: 8093
+
+# datasource
+#spring:
+#  datasource:
+#    type: com.alibaba.druid.pool.DruidDataSource
+#    driverClassName: com.mysql.cj.jdbc.Driver
+#    druid:
+#      url: jdbc:mysql://localhost:3307/repl?serverTimezone=Asia/Shanghai&useUnicode=true&characterEncoding=UTF-8&zeroDateTimeBehavior=CONVERT_TO_NULL&useSSL=false
+#      username: root
+#      password: password
+
+# io.shardingsphere的配置
+sharding:
+  jdbc:
+    datasource:
+      names: master1,slave1
+      master1:
+        type: com.zaxxer.hikari.HikariDataSource
+#        type: org.apache.commons.dbcp.BasicDataSource
+        driver-class-name: com.mysql.cj.jdbc.Driver
+        jdbc-url: jdbc:mysql://localhost:3307/repl?useSSL=false&useUnicode=true&characterEncoding=utf8&autoReconnect=true
+        username: root
+        password: password
+        maxPoolSize: 20
+      slave1:
+        type: com.zaxxer.hikari.HikariDataSource
+#        type: org.apache.commons.dbcp.BasicDataSource
+        driver-class-name: com.mysql.cj.jdbc.Driver
+        jdbc-url: jdbc:mysql://localhost:3309/repl?useSSL=false&useUnicode=true&characterEncoding=utf8&autoReconnect=true
+        username: slave
+        password: password
+        maxPoolSize: 20
+    config:
+      masterslave:
+        load-balance-algorithm-type: round_robin
+        name: db_m1_s1
+        master-data-source-name: master1
+        slave-data-source-names: slave1
+      sharding:
+        props:
+          sql:
+            show: true
+
+#mybatis
+mybatis:
+  mapper-locations: classpath*:/mapper/**Mapper.xml
+  #实体扫描，多个package用逗号或者分号分隔
+  typeAliasesPackage: com.domain

@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration PUBLIC
+ "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+ "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+
+<generatorConfiguration>
+  <properties resource="./config/application-dev.properties"/>
+
+  <classPathEntry location="/Users/lw/Downloads/generator/mysql-connector-java-5.1.6.jar" />
+  
+  <context id="DB2Tables" targetRuntime="MyBatis3">  
+  <commentGenerator>  
+    <property name="suppressAllComments" value="true" />  
+
+  </commentGenerator>
+
+  <jdbcConnection driverClass="${spring.datasource.driver-class-name}"
+          connectionURL="${spring.datasource.url}"
+          userId="${spring.datasource.username}"
+          password="${spring.datasource.password}">
+  </jdbcConnection>  
+
+  <javaTypeResolver >  
+     <property name="forceBigDecimals" value="false" />  
+  </javaTypeResolver>  
+  
+  <javaModelGenerator targetPackage="com.domain" targetProject="src/main/java">
+      <property name="enableSubPackages" value="true" />
+      <property name="trimStrings" value="true" />
+  </javaModelGenerator>  
+
+  <sqlMapGenerator targetPackage="mapper"  targetProject="src/main/resources">
+       <property name="enableSubPackages" value="false" />  
+  </sqlMapGenerator>  
+
+  <!--Mapper接口-->    
+  <javaClientGenerator type="XMLMAPPER" targetPackage="com.mapper"  targetProject="src/main/java">
+    <property name="enableSubPackages" value="true" />  
+  </javaClientGenerator>  
+
+  <!--table元素可以有多个-->
+  <table schema="test" tableName="user1" domainObjectName="User1Domain"
+    enableCountByExample="false" enableDeleteByExample="false" enableSelectByExample="false" enableUpdateByExample="false">  
+  </table>
+    <table schema="test" tableName="user2" domainObjectName="User2Domain"
+           enableCountByExample="false" enableDeleteByExample="false" enableSelectByExample="false" enableUpdateByExample="false">
+    </table>
+   
+</context>  
+
+</generatorConfiguration>

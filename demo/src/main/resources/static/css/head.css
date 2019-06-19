@@ -1,0 +1,49 @@
+.navbar-brand .brand img {
+  margin-bottom: 2px;
+}
+
+.navbar-default .user-info {
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+
+.navbar .top-nav {
+  overflow: hidden;
+  margin: 38px 0 0 0;
+  background: #3E3E3E;
+}
+
+.navbar .top-nav li {
+  width: 14.28%;
+  text-align: center;
+  float: left;
+}
+
+.navbar .top-nav li a img {
+  display: block;
+  margin: 0 auto;
+}
+
+.navbar .top-nav li a {
+  display: block;
+  width: 100%;
+  text-align: center;
+  padding: 17px 0 20px 0;
+  color: #FFF;
+  text-decoration: none;
+  font-size: 14px;
+  background-color: #3E3E3E;
+}
+
+.navbar .top-nav li a:hover{
+  background: #575757;
+}
+
+.navbar .top-nav li a:active{
+  background: #000;
+}
+
+.warn-info{
+  color: rgb(243, 106, 90);
+}

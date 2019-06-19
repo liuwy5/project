@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <link  rel="stylesheet"  type="text/css"  href="/assets/css/layout-default-latest.css" />
+    <script type="text/javascript" src="/assets/js/jquery-1.11.0.min.js"></script>
+    <script type="text/javascript" src="/assets/js/jquery.layout-latest.min.js"></script>
+    <title>append child</title>
+</head>
+<body>
+
+<iframe name="content" class="ui-layout-center"
+        src="" frameborder="0" scrolling="auto"></iframe>
+
+<iframe name="tree" class="ui-layout-west" src="/organization/tree" frameborder="0" scrolling="auto">
+
+</iframe>
+
+<script>
+    $(function () {
+        $(document).ready(function () {
+            $('body').layout({ applyDemoStyles: true });
+        });
+    });
+</script>
+</body>
+</html>

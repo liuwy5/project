@@ -1,0 +1,84 @@
+﻿<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8"/>
+</head>
+
+<body>
+<div th:fragment="nav">
+
+    <nav class="navbar navbar-default top-navbar" role="navigation">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".sidebar-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/index"><strong>今日金融现金贷</strong></a>
+            <div id="sideNav" href="">
+                <i class="fa fa-bars icon"></i>
+            </div>
+        </div>
+
+        <ul class="nav navbar-top-links navbar-right">
+
+
+            <!-- /.dropdown -->
+            <li class="dropdown">
+                <a class="dropdown-toggle" data-toggle="dropdown" href="#" aria-expanded="false">
+                    <i class="fa fa-user fa-fw"></i> <i class="fa fa-caret-down"></i>
+                </a>
+                <ul class="dropdown-menu dropdown-user">
+
+                    <li><a href="/api/logout"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
+                    </li>
+                </ul>
+                <!-- /.dropdown-user -->
+            </li>
+            <!-- /.dropdown -->
+        </ul>
+    </nav>
+    <!--/. NAV TOP  -->
+
+    <nav class="navbar-default navbar-side" role="navigation">
+        <div class="sidebar-collapse">
+            <ul class="nav" id="main-menu">
+
+                <li>
+                    <a href="/borrowPlatform" th:class="${activeIndex == '1'} ? 'active-menu' : '' " ><i class="fa fa-table"></i> 出借平台管理</a>
+                </li>
+                <li>
+                    <a href="/loanPlatform" th:class="${activeIndex == '2'} ? 'active-menu' : '' " ><i class="fa fa-table"></i> 贷款平台管理</a>
+                </li>
+                <!--<li>-->
+                    <!--<a href="/index" th:class="${activeIndex == '1'} ? 'active-menu' : '' " ><i class="fa fa-dashboard"></i> Dashboard</a>-->
+                <!--</li>-->
+                <!--<li>-->
+                    <!--<a href="/ui-elements" th:class="${activeIndex == '2'} ? 'active-menu' : '' " ><i class="fa fa-desktop"></i> UI Elements</a>-->
+                <!--</li>-->
+
+
+                <!--<li>-->
+                    <!--<a href="/tab-panel" th:class="${activeIndex == '3'} ? 'active-menu' : '' " ><i class="fa fa-qrcode"></i> Tabs & Panels</a>-->
+                <!--</li>-->
+
+                <!--<li>-->
+                    <!--<a href="/table" th:class="${activeIndex == '4'} ? 'active-menu' : '' " ><i class="fa fa-table"></i> Responsive Tables</a>-->
+                <!--</li>-->
+
+            </ul>
+
+        </div>
+
+    </nav>
+    <!-- /. NAV SIDE  -->
+
+
+
+<script src="/assets/js/jquery-1.11.1.min.js"></script>
+<script src="/assets/js/iosOverlay.js"></script>
+<script src="/js/common/nav.js"></script>
+</div>
+</body>
+</html>

@@ -1,0 +1,5 @@
+/oauth/token post
+password模式：
+http://localhost:8093/oauth/token?username=admin&password=password&grant_type=password&scope=select&client_id=client_password&client_secret=123456
+client模式：
+http://localhost:8093/oauth/token?grant_type=client_credentials&scope=select&client_id=client_credential&client_secret=123456

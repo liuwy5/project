@@ -1,0 +1,28 @@
+sharding:
+  jdbc:
+    datasource:
+      names: master1,slave1
+      master1:
+        type: org.apache.commons.dbcp.BasicDataSource
+        driver-class-name: com.mysql.cj.jdbc.Driver
+        url: jdbc:mysql://localhost:3307/repl?serverTimezone=Hongkong&useSSL=false&useUnicode=true&characterEncoding=utf8&autoReconnect=true
+        username: root
+        password: password
+        maxPoolSize: 20
+      slave1:
+        type: org.apache.commons.dbcp.BasicDataSource
+        driver-class-name: com.mysql.cj.jdbc.Driver
+        url: jdbc:mysql://localhost:3309/repl?serverTimezone=Hongkong&useSSL=false&useUnicode=true&characterEncoding=utf8&autoReconnect=true
+        username: slave
+        password: password
+        maxPoolSize: 20
+    config:
+      masterslave:
+        load-balance-algorithm-type: round_robin
+        name: db_m1_s1
+        master-data-source-name: master1
+        slave-data-source-names: slave1
+      sharding:
+        props:
+          sql:
+            show: true

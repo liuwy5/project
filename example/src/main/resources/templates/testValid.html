@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script type="text/javascript" src="../static/js/jquery-3.3.1.min.js"></script>
+    <script type="text/javascript" src="../static/js/jquery.validate.js"></script>
+    <script>
+        $().ready(function() {
+            $("#registerForm").validate({
+                rules : {
+                    gender : {
+                        required : true
+                    },
+                    checkGroup : {
+                        required : true,
+                        minlength:2
+                    },
+                    selectbox : {
+                        required : true
+                    }
+                },
+                messages : {
+                    gender : {
+                        required : '性别不能为空'
+                    },
+                    checkGroup : {
+                        required : '必须选择',
+                        minlength:'至少选择{0}项'
+                    },
+                    selectbox : {
+                        required : '必须选择'
+                    }
+                }
+            });
+        });
+    </script>
+</head>
+<body>
+<form id="registerForm" method="get" action="">
+    <fieldset>
+        <!-- radio的验证  -->
+        性别 <span><br/>
+            男<input type="radio" id="gender_male" value="m" name="gender"/><br />
+            女<input type="radio" id="gender_female" value="f" name="gender" />
+            </span>
+        <!-- checkbox的验证 -->
+        <br/>最少选择两项 <span><br />
+                选项1<input type="checkbox" id="check_1" value="1" name="checkGroup" /><br />
+                选项2<input type="checkbox" id="check_2" value="2" name="checkGroup" /><br />
+                选项3<input type="checkbox" id="check_3" value="3" name="checkGroup" /><br />
+            </span>
+        <!-- select的验证 -->
+        <br/>下拉框 <span><br />
+                <select id="selectbox" name="selectbox">
+                    <option value=""></option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                </select>
+            </span>
+        <p>
+            <input type="submit" value="提交">
+        </p>
+    </fieldset>
+</form>
+</body>
+</html>
